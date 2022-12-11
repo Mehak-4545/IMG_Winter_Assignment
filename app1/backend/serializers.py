@@ -3,55 +3,56 @@ from backend.models import RecruitmentSeason,Round,Section,Question,Candidate,Us
 
 # create serializers here
 
-class RecruitmentSeason(serializers.HyperlinkerModelSerializer):
+
+class RecruitmentSeasonSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model=RecruitmentSeason
         fields='__all__'
 
 
-class Round(serializers.HyperlinkerModelSerializer):
+class RoundSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Round
         fields = '__all__'
 
 
-class Section(serializers.HyperlinkerModelSerializer):
+class SectionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Section
         fields = '__all__'
 
 
-class Question(serializers.HyperlinkerModelSerializer):
+class QuestionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Question
         fields = '__all__'
 
 
-class Candidate(serializers.HyperlinkerModelSerializer):
+class CandidateSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Candidate
         fields = '__all__'
 
 
-class User(serializers.HyperlinkerModelSerializer):
+class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
 
 
-class EvaluatorPanel(serializers.HyperlinkerModelSerializer):
+class EvaluatorPanelSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = EvaluatorPanel
         fields = '__all__'
 
 
-class CandidateRound(serializers.HyperlinkerModelSerializer):
+class CandidateRoundSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CandidateRound
         fields = '__all__'
 
 
-class CandidateQuestion(serializers.HyperlinkerModelSerializer):
+class CandidateQuestionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CandidateQuestion
         fields = '__all__'
