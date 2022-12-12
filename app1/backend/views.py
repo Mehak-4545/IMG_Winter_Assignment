@@ -4,6 +4,7 @@ from backend.models import RecruitmentSeason, Round, Section, Question, Candidat
 from backend.serializers import RecruitmentSeasonSerializer, RoundSerializer, SectionSerializer, QuestionSerializer, CandidateSerializer, UserSerializer, EvaluatorPanelSerializer, CandidateRoundSerializer, CandidateQuestionSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from django.http import HttpResponse
 
 # # Create your views here.
 
@@ -36,6 +37,10 @@ class CandidateViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
+
+    def add_user(request):
+        print('this action will add a user')
+        return HttpResponse('<h1>dummy user registered</h1>')
 
 
 class EvaluatorPanelViewSet(viewsets.ModelViewSet):

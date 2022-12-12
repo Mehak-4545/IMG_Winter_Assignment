@@ -31,3 +31,12 @@ def dashboard_page(request):
     return render(request, "dashboard.html", {})
 
 
+def login_page(request):
+    # date = datetime.datetime.now()
+
+    print("login page requested")
+    # return JsonResponse(friends,safe=False)
+    # return HttpResponse("This is home page")
+    return render(request, "login.html", {})
+
+

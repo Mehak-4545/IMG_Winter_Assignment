@@ -33,7 +33,8 @@ router.register(r'candidatequestion', CandidateQuestionViewSet)
 
 urlpatterns = [
 
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path('add_user/', UserViewSet.add_user),
 ]
 
 # custom url
