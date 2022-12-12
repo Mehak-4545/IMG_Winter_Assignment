@@ -40,3 +40,12 @@ def login_page(request):
     return render(request, "login.html", {})
 
 
+def signup_page(request):
+    # date = datetime.datetime.now()
+
+    print("signup page requested")
+    # return JsonResponse(friends,safe=False)
+    # return HttpResponse("This is home page")
+    return render(request, "signup.html", {})
+
+

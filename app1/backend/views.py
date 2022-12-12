@@ -42,6 +42,10 @@ class UserViewSet(viewsets.ModelViewSet):
         print('this action will add a user')
         return HttpResponse('<h1>dummy user registered</h1>')
 
+    def login_user(request):
+        print('this action will login an existing user')
+        return HttpResponse('<h1>dummy user logged in</h1>')
+
 
 class EvaluatorPanelViewSet(viewsets.ModelViewSet):
     serializer_class = EvaluatorPanelSerializer

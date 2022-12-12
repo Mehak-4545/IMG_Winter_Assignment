@@ -35,6 +35,7 @@ urlpatterns = [
 
     path('', include(router.urls)),
     path('add_user/', UserViewSet.add_user),
+    path('login_user/', UserViewSet.login_user),
 ]
 
 # custom url

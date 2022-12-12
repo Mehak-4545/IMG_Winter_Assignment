@@ -23,5 +23,6 @@ urlpatterns = [
     path("profile/", profile_page),
     path("dashboard/", dashboard_page),
     path("login/", login_page),
+    path("signup/", signup_page),
     path("backend/", include('backend.urls'))
 ]

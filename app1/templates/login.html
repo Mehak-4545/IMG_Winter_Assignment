@@ -12,7 +12,7 @@
 
     {% include 'navbar.html' %}
 
-    <h1 class="text-center my-3">Sign Up to IMG Recruitment Website</h1>
+    <h1 class="text-center my-3">Login to IMG Recruitment Website</h1>
 
     <div class="container">
         <div class="row">
@@ -20,48 +20,21 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <form action="/backend/add_user/" method="POST">
+                        <form action="/backend/login_user/" method="POST">
                             {% csrf_token %}
 
 
                             <div class=" mb-3 ">
-                                <label for="name ">Name</label>
+                                <label for="name ">Username</label>
                                 <input id="name " type=" text " class="form-control " placeholder="enter employee name " name="emp_name"></div>
 
                             <div class="mb-3 ">
-                                <label for="eid ">UserID</label>
+                                <label for="eid ">Password</label>
                                 <input id="eid " type=" text " class="form-control " placeholder="enter employee id " name="emp_id"></div>
 
-                            <div class="mb-3 ">
-                                <label for="pn ">Phonenumber</label>
-                                <input id="pn " type=" text " class="form-control " placeholder="enter employee phone number " name="emp_phone"></div>
-
-                            <div class="mb-3 ">
-                                <label for="address ">Address</label>
-                                <input id="address " type=" text-area " rows="6 " class="form-control " name="emp_address"></div>
-
-                            <div class="mb-3 form-check ">
-                                <label for="working ">Working</label>
-                                <input id="working " type="checkbox" class="form-check-input " name="emp_working"></div>
-
-                            <div class="mb-3 ">
-                                <label for="department ">Departments</label>
-                                <select id="department " class="form-control " value="CSE " name="emp_dept">
-                                <option value="CSE ">Computer Science</option>
-                                <option value="ME ">Mechanical</option>
-                                <option value="EE ">Electrical</option>
-                                <option value="EE ">Maths</option>
-                                <option value="EE ">Economics</option>
-                                <option value="EE ">Metallurgy</option>
-                                <option value="EE ">Chemical</option>
-                                <option value="EE ">Biotech</option>
-                                <option value="EE ">ECE</option>
-                            </select>
-
-                            </div>
 
                             <div class="container text-center ">
-                                <button class="btn btn-primary ">Register User</button>
+                                <button class="btn btn-primary ">Login</button>
                             </div>
                         </form>
                     </div>
