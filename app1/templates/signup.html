@@ -20,53 +20,73 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <form action="/backend/login_user/" method="POST">
+                        <form action="/backend/add_user/" method="POST">
                             {% csrf_token %}
 
 
                             <div class=" mb-3 ">
                                 <label for="name ">Name</label>
-                                <input id="name " type=" text " class="form-control " placeholder="enter name " name="emp_name"></div>
+                                <input id="name " type=" text " class="form-control " placeholder="enter name " name="mem_name"></div>
+
+                            <div class=" mb-3 ">
+                                <label for="enum ">EnrolllmentNumber</label>
+                                <input id="enum " type=" text " class="form-control " placeholder="enter emrollmentnumber " name="mem_enum"></div>
+
+                            <div class=" mb-3 ">
+                                <label for="mail ">Email</label>
+                                <input id="mail " type=" text " class="form-control " placeholder="enter EmailID " name="mem_email"></div>
 
                             <div class="mb-3 ">
                                 <label for="pn ">Phonenumber</label>
-                                <input id="pn " type=" text " class="form-control " placeholder="enter phone number " name="emp_phone"></div>
+                                <input id="pn " type=" text " class="form-control " placeholder="enter phone number " name="mem_phone"></div>
+
 
                             <div class="mb-3 ">
-                                <label for="address ">Address</label>
-                                <input id="address " type=" text-area " rows="6 " class="form-control " name="emp_address"></div>
+                                <label for="role ">Role</label>
+                                <select id="role " class="form-control " value=" " name="mem_role">
+                                <option value="Developer ">Developer</option>
+                                <option value="Designer ">Designer</option>
+                            </select>
+                            </div>
 
-                            <div class="mb-3 form-check ">
-                                <label for="working ">Working</label>
-                                <input id="working " type="checkbox" class="form-check-input " name="emp_working"></div>
+
+                            <div class="mb-3 ">
+                                <label for="Year ">Year</label>
+                                <select id="Year " class="form-control " value=" " name="mem_year">
+                                <option value="2 ">2nd</option>
+                                <option value="3 ">3rd</option>
+                                <option value="4 ">4th</option>
+                            </select>
+                            </div>
+
 
                             <div class="mb-3 ">
                                 <label for="department ">Departments</label>
-                                <select id="department " class="form-control " value="CSE " name="emp_dept">
+                                <select id="department " class="form-control " value="CSE " name="mem_dept">
                                 <option value="CSE ">Computer Science</option>
                                 <option value="ME ">Mechanical</option>
                                 <option value="EE ">Electrical</option>
-                                <option value="EE ">Maths</option>
-                                <option value="EE ">Economics</option>
-                                <option value="EE ">Metallurgy</option>
-                                <option value="EE ">Chemical</option>
-                                <option value="EE ">Biotech</option>
-                                <option value="EE ">ECE</option>
+                                <option value="Math ">Maths</option>
+                                <option value="Eco ">Economics</option>
+                                <option value="Meta ">Metallurgy</option>
+                                <option value="Chem ">Chemical</option>
+                                <option value="BioTech ">Biotech</option>
+                                <option value="ECE ">ECE</option>
                             </select>
 
                             </div>
 
                             <div class="mb-3 ">
                                 <label for="eid ">Username</label>
-                                <input id="eid " type=" text " class="form-control " placeholder="enter username " name="emp_id"></div>
+                                <input id="eid " type=" text " class="form-control " placeholder="enter username " name="mem_username"></div>
 
                             <div class="mb-3 ">
                                 <label for="eid ">Password</label>
-                                <input id="eid " type=" text " class="form-control " placeholder="enter password " name="emp_id"></div>
+                                <input id="eid " type=" text " class="form-control " placeholder="enter password " name="mem_pw"></div>
 
-                            <div class="mb-3 ">
+                            <!-- <div class="mb-3 ">
                                 <label for="eid ">Confirm Password</label>
-                                <input id="eid " type=" text " class="form-control " placeholder="confirm password " name="emp_id"></div>
+                                <input id="eid " type=" text " class="form-control " placeholder="confirm password " name="mem_cpw"></div> -->
 
 
                             <div class="container text-center ">

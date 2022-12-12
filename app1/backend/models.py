@@ -64,17 +64,17 @@ class CandidateRound(models.Model):
 
 
 class User(models.Model):
-    user_id=models.AutoField(primary_key=True)
+    user_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
     enrollment_number=models.CharField(max_length=100)
-    name=models.CharField(max_length=100)
-    branch=models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=100)
     role=models.CharField(max_length=100)
     year=models.CharField(max_length=100)
-    email=models.CharField(max_length=100)
-    phone_number=models.CharField(max_length=100)
+    branch = models.CharField(max_length=100)
     user_name=models.CharField(max_length=100)
     password=models.CharField(max_length=100)
-    dob=models.CharField(max_length=100)
+    # dob=models.CharField(max_length=100)
 
 
 

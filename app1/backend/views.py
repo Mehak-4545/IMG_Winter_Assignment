@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from rest_framework import viewsets
-from backend.models import RecruitmentSeason, Round, Section, Question, Candidate, User, EvaluatorPanel, CandidateRound, CandidateQuestion
-from backend.serializers import RecruitmentSeasonSerializer, RoundSerializer, SectionSerializer, QuestionSerializer, CandidateSerializer, UserSerializer, EvaluatorPanelSerializer, CandidateRoundSerializer, CandidateQuestionSerializer
+from .models import RecruitmentSeason, Round, Section, Question, Candidate, User, EvaluatorPanel, CandidateRound, CandidateQuestion
+from .serializers import RecruitmentSeasonSerializer, RoundSerializer, SectionSerializer, QuestionSerializer, CandidateSerializer, UserSerializer, EvaluatorPanelSerializer, CandidateRoundSerializer, CandidateQuestionSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.http import HttpResponse
@@ -40,7 +40,48 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def add_user(request):
         print('this action will add a user')
+        # return HttpResponse('<h1>dummy user registered</h1>')
+
+        if request.method=="POST":
+
+            #data fetch
+            mem_name=request.POST.get("mem_name")
+            mem_enum=request.POST.get("mem_enum")
+            mem_email=request.POST.get("mem_email")
+            mem_phone=request.POST.get("mem_phone")
+            mem_role=request.POST.get("mem_role")
+            mem_year=request.POST.get("mem_year")
+            mem_dept=request.POST.get("mem_dept")
+            mem_username=request.POST.get("mem_username")
+            mem_pw=request.POST.get("mem_pw")
+            # mem_cpw=request.POST.get("mem_cpw")
+
+            #create model object and set data
+            m = User()
+            m.name = mem_name
+            m.enrollment_number = mem_enum
+            m.email = mem_email
+            m.phone_number = mem_phone
+            m.role = mem_role
+            m.year = mem_year
+            m.branch = mem_dept
+            m.user_name = mem_username
+            m.password = mem_pw
+
+            # Validate
+
+            # save object
+            m.save()
+
+            # prepare message
+            print("User being created")
+
+            return redirect("/backend/add_user/")
+
         return HttpResponse('<h1>dummy user registered</h1>')
+        return render(request, "signup.html", {})
+
+            
 
     def login_user(request):
         print('this action will login an existing user')
