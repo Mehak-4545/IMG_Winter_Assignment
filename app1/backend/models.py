@@ -48,8 +48,8 @@ class Candidate(models.Model):
     cg=models.CharField(max_length=100)
     current_status=models.CharField(max_length=100)
 
-    RecruitmentSeason = models.ForeignKey(RecruitmentSeason, on_delete=models.CASCADE)
-    Round = models.ForeignKey(Round, on_delete=models.CASCADE)
+    # RecruitmentSeason = models.ForeignKey(RecruitmentSeason, on_delete=models.CASCADE)
+    # Round = models.ForeignKey(Round, on_delete=models.CASCADE)
 
 
 
@@ -79,7 +79,7 @@ class User(models.Model):
 
 
 class EvaluatorPanel(models.Model):
-    parent_id=models.CharField(max_length=100)
+    panel_id=models.CharField(max_length=100)
     evaluator_id=models.CharField(max_length=100)
     user_id=models.CharField(max_length=100)
     

@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from backend import views
 from .views import *
 
 urlpatterns = [
@@ -24,5 +25,6 @@ urlpatterns = [
     path("dashboard/", dashboard_page),
     path("login/", login_page),
     path("signup/", signup_page),
-    path("backend/", include('backend.urls'))
+    path("backend/", include('backend.urls')),
+    path('candidateapi/', views.CandidateAPI.as_view()),
 ]

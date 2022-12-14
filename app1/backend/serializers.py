@@ -31,7 +31,9 @@ class QuestionSerializer(serializers.HyperlinkedModelSerializer):
 class CandidateSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Candidate
-        fields = '__all__'
+        fields = ('candidate_id','enrollment_number','name','email','phone','branch','year','role','cg','current_status')
+        # fields = ('candidate_id','enrollment_number','name','email','phone','branch','year','role','cg','current_status','RecruitmentSeason','Round')
+        # extra_kwargs = {}
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):

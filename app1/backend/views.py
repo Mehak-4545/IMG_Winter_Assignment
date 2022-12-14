@@ -1,12 +1,92 @@
 from django.shortcuts import render, redirect
+import io
+from rest_framework.parsers import JSONParser
+from rest_framework.renderers import JSONRenderer
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets
 from .models import RecruitmentSeason, Round, Section, Question, Candidate, User, EvaluatorPanel, CandidateRound, CandidateQuestion
 from .serializers import RecruitmentSeasonSerializer, RoundSerializer, SectionSerializer, QuestionSerializer, CandidateSerializer, UserSerializer, EvaluatorPanelSerializer, CandidateRoundSerializer, CandidateQuestionSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.http import HttpResponse
+from django.utils.decorators import method_decorator
+from django.views import View
 
 # # Create your views here.
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class CandidateAPI(View):
+
+    def get(self, request, *args, **kwargs):
+        json_data = request.body
+        stream = io.BytesIO(json_data)
+        pythondata = JSONParser().parse(stream)
+        id = pythondata.get('id', None)
+        if id is not None:
+            stu = Candidate.objects.get(id=id)
+            serializer = stu = CandidateSerializer(stu)
+            json_data = JSONRenderer().render(serializer.data)
+            return HttpResponse(json_data, content_type='application/json')
+
+        else:
+            stu = Candidate.objects.all()
+            serializer = Canstu = CandidateSerializer(stu)
+            json_data = JSONRenderer().render(serializer.data)
+            return HttpResponse(json_data, content_type='application/json')
+
+
+
+    def post(self, request, *args, **kwargs):
+        json_data = request.body
+        stream = io.BytesIO(json_data)
+        pythondata = JSONParser().parse(stream)
+        serializer = CandidateSerializer(data = pythondata)
+
+        if serializer.is_valid():
+            serializer.save()
+            res = {'msg' : 'Data Created'}
+            json_data = JSONRenderer().render(res)
+            return HttpResponse(json_data, content_type='Application/json')
+
+        json_data = JSONRenderer().render(serializer.errors)
+        return HttpResponse(json_data, content_type='Application/json')
+
+
+
+
+    def put(self, request, *args, **kwargs):
+        json_data = request.body
+        stream = io.BytesIO(json_data)
+        pythondata = JSONParser().parse(stream)
+        id = pythondata.get('id')
+        stu = Candidate.objects.get(id=id)
+        serializer = stu = CandidateSerializer(stu,data = pythondata,partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+            res = {'msg' : 'Data Updated'}
+            json_data = JSONRenderer().render(res)
+            return HttpResponse(json_data, content_type='Application/json')
+
+        json_data = JSONRenderer().render(serializer.errors)
+        return HttpResponse(json_data, content_type='Application/json')
+
+
+
+
+    def delete(self, request, *args, **kwargs):
+        json_data = request.body
+        stream = io.BytesIO(json_data)
+        pythondata = JSONParser().parse(stream)
+        id = pythondata.get('id')
+        stu = Candidate.objects.get(id=id)
+        stu.delete()
+
+        res = {'msg : Data Deleted'}
+        json_data = JSONRenderer().render(res)
+        return HttpResponse(json_data, content_type='Application/json')
+
 
 
 class RecruitmentSeasonViewSet(viewsets.ModelViewSet):
@@ -78,7 +158,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
             return redirect("/backend/add_user/")
 
-        return HttpResponse('<h1>dummy user registered</h1>')
+        # return HttpResponse('<h1>dummy user registered</h1>')
         return render(request, "signup.html", {})
 
             
