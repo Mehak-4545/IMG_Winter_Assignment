@@ -11,155 +11,83 @@ from rest_framework.response import Response
 from django.http import HttpResponse
 from django.utils.decorators import method_decorator
 from django.views import View
+from rest_framework import viewsets
 
 # # Create your views here.
 
 
-@method_decorator(csrf_exempt, name='dispatch')
-class CandidateAPI(View):
-
-    def get(self, request, *args, **kwargs):
-        json_data = request.body
-        stream = io.BytesIO(json_data)
-        pythondata = JSONParser().parse(stream)
-        id = pythondata.get('id', None)
-        if id is not None:
-            stu = Candidate.objects.get(id=id)
-            serializer = stu = CandidateSerializer(stu)
-            json_data = JSONRenderer().render(serializer.data)
-            return HttpResponse(json_data, content_type='application/json')
-
-        else:
-            stu = Candidate.objects.all()
-            serializer = Canstu = CandidateSerializer(stu)
-            json_data = JSONRenderer().render(serializer.data)
-            return HttpResponse(json_data, content_type='application/json')
-
-
-
-    def post(self, request, *args, **kwargs):
-        json_data = request.body
-        stream = io.BytesIO(json_data)
-        pythondata = JSONParser().parse(stream)
-        serializer = CandidateSerializer(data = pythondata)
-
-        if serializer.is_valid():
-            serializer.save()
-            res = {'msg' : 'Data Created'}
-            json_data = JSONRenderer().render(res)
-            return HttpResponse(json_data, content_type='Application/json')
-
-        json_data = JSONRenderer().render(serializer.errors)
-        return HttpResponse(json_data, content_type='Application/json')
-
-
-
-
-    def put(self, request, *args, **kwargs):
-        json_data = request.body
-        stream = io.BytesIO(json_data)
-        pythondata = JSONParser().parse(stream)
-        id = pythondata.get('id')
-        stu = Candidate.objects.get(id=id)
-        serializer = stu = CandidateSerializer(stu,data = pythondata,partial=True)
-
-        if serializer.is_valid():
-            serializer.save()
-            res = {'msg' : 'Data Updated'}
-            json_data = JSONRenderer().render(res)
-            return HttpResponse(json_data, content_type='Application/json')
-
-        json_data = JSONRenderer().render(serializer.errors)
-        return HttpResponse(json_data, content_type='Application/json')
-
-
-
-
-    def delete(self, request, *args, **kwargs):
-        json_data = request.body
-        stream = io.BytesIO(json_data)
-        pythondata = JSONParser().parse(stream)
-        id = pythondata.get('id')
-        stu = Candidate.objects.get(id=id)
-        stu.delete()
-
-        res = {'msg : Data Deleted'}
-        json_data = JSONRenderer().render(res)
-        return HttpResponse(json_data, content_type='Application/json')
-
-
-
-class RecruitmentSeasonViewSet(viewsets.ModelViewSet):
-    serializer_class = RecruitmentSeasonSerializer
+class RecruitmentSeasonModelViewSet(viewsets.ModelViewSet):
     queryset=RecruitmentSeason.objects.all()
+    serializer_class = RecruitmentSeasonSerializer
+    
 
 
-class RoundViewSet(viewsets.ModelViewSet):
+class RoundModelViewSet(viewsets.ModelViewSet):
     serializer_class = RoundSerializer
     queryset = Round.objects.all()
 
 
-class SectionViewSet(viewsets.ModelViewSet):
+class SectionModelViewSet(viewsets.ModelViewSet):
     serializer_class = SectionSerializer
     queryset = Section.objects.all()
 
 
-class QuestionViewSet(viewsets.ModelViewSet):
+class QuestionModelViewSet(viewsets.ModelViewSet):
     serializer_class = QuestionSerializer
     queryset = Question.objects.all()
 
 
-class CandidateViewSet(viewsets.ModelViewSet):
-    serializer_class = CandidateSerializer
+class CandidateModelViewSet(viewsets.ModelViewSet):
     queryset = Candidate.objects.all()
+    serializer_class = CandidateSerializer
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    serializer_class = UserSerializer
+class UserModelViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
+    serializer_class = UserSerializer
 
-    def add_user(request):
-        print('this action will add a user')
-        # return HttpResponse('<h1>dummy user registered</h1>')
+    # def add_user(request):
+    #     print('this action will add a user')
+    #     # return HttpResponse('<h1>dummy user registered</h1>')
 
-        if request.method=="POST":
+    #     if request.method=="POST":
 
-            #data fetch
-            mem_name=request.POST.get("mem_name")
-            mem_enum=request.POST.get("mem_enum")
-            mem_email=request.POST.get("mem_email")
-            mem_phone=request.POST.get("mem_phone")
-            mem_role=request.POST.get("mem_role")
-            mem_year=request.POST.get("mem_year")
-            mem_dept=request.POST.get("mem_dept")
-            mem_username=request.POST.get("mem_username")
-            mem_pw=request.POST.get("mem_pw")
-            # mem_cpw=request.POST.get("mem_cpw")
+    #         #data fetch
+    #         mem_name=request.POST.get("mem_name")
+    #         mem_enum=request.POST.get("mem_enum")
+    #         mem_email=request.POST.get("mem_email")
+    #         mem_phone=request.POST.get("mem_phone")
+    #         mem_role=request.POST.get("mem_role")
+    #         mem_year=request.POST.get("mem_year")
+    #         mem_dept=request.POST.get("mem_dept")
+    #         mem_username=request.POST.get("mem_username")
+    #         mem_pw=request.POST.get("mem_pw")
+    #         # mem_cpw=request.POST.get("mem_cpw")
 
-            #create model object and set data
-            m = User()
-            m.name = mem_name
-            m.enrollment_number = mem_enum
-            m.email = mem_email
-            m.phone_number = mem_phone
-            m.role = mem_role
-            m.year = mem_year
-            m.branch = mem_dept
-            m.user_name = mem_username
-            m.password = mem_pw
+    #         #create model object and set data
+    #         m = User()
+    #         m.name = mem_name
+    #         m.enrollment_number = mem_enum
+    #         m.email = mem_email
+    #         m.phone_number = mem_phone
+    #         m.role = mem_role
+    #         m.year = mem_year
+    #         m.branch = mem_dept
+    #         m.user_name = mem_username
+    #         m.password = mem_pw
 
-            # Validate
+    #         # Validate
 
-            # save object
-            m.save()
+    #         # save object
+    #         m.save()
 
-            # prepare message
-            print("User being created")
+    #         # prepare message
+    #         print("User being created")
 
-            return redirect("/backend/add_user/")
+    #         return redirect("/backend/add_user/")
 
-        # return HttpResponse('<h1>dummy user registered</h1>')
-        return render(request, "signup.html", {})
+    #     # return HttpResponse('<h1>dummy user registered</h1>')
+    #     return render(request, "signup.html", {})
 
             
 
@@ -168,16 +96,91 @@ class UserViewSet(viewsets.ModelViewSet):
         return HttpResponse('<h1>dummy user logged in</h1>')
 
 
-class EvaluatorPanelViewSet(viewsets.ModelViewSet):
+class EvaluatorPanelModelViewSet(viewsets.ModelViewSet):
     serializer_class = EvaluatorPanelSerializer
     queryset = EvaluatorPanel.objects.all()
 
 
-class CandidateRoundViewSet(viewsets.ModelViewSet):
+class CandidateRoundModelViewSet(viewsets.ModelViewSet):
     serializer_class = CandidateRoundSerializer
     queryset = CandidateRound.objects.all()
 
 
-class CandidateQuestionViewSet(viewsets.ModelViewSet):
+class CandidateQuestionModelViewSet(viewsets.ModelViewSet):
     serializer_class = CandidateQuestionSerializer
     queryset = CandidateQuestion.objects.all()
+
+
+
+# @method_decorator(csrf_exempt, name='dispatch')
+# class CandidateAPI(View):
+
+#     def get(self, request, *args, **kwargs):
+#         json_data = request.body
+#         stream = io.BytesIO(json_data)
+#         pythondata = JSONParser().parse(stream)
+#         candidate_id = pythondata.get('candidate_id', None)
+#         if candidate_id is not None:
+#             stu = Candidate.objects.get(candidate_id=candidate_id)
+#             serializer = stu = CandidateSerializer(stu)
+#             json_data = JSONRenderer().render(serializer.data)
+#             return HttpResponse(json_data, content_type='application/json')
+
+#         else:
+#             stu = Candidate.objects.all()
+#             serializer = stu = CandidateSerializer(stu)
+#             json_data = JSONRenderer().render(serializer.data)
+#             return HttpResponse(json_data, content_type='application/json')
+
+
+
+#     def post(self, request, *args, **kwargs):
+#         json_data = request.body
+#         stream = io.BytesIO(json_data)
+#         pythondata = JSONParser().parse(stream)
+#         serializer = CandidateSerializer(data = pythondata)
+
+#         if serializer.is_valid():
+#             serializer.save()
+#             res = {'msg' : 'Data Created'}
+#             json_data = JSONRenderer().render(res)
+#             return HttpResponse(json_data, content_type='Application/json')
+
+#         json_data = JSONRenderer().render(serializer.errors)
+#         return HttpResponse(json_data, content_type='Application/json')
+
+
+
+
+#     def put(self, request, *args, **kwargs):
+#         json_data = request.body
+#         stream = io.BytesIO(json_data)
+#         pythondata = JSONParser().parse(stream)
+#         candidate_id = pythondata.get('candidate_id')
+#         stu = Candidate.objects.get(candidate_id=candidate_id)
+#         serializer = stu = CandidateSerializer(stu,data = pythondata,partial=True)
+
+#         if serializer.is_valid():
+#             serializer.save()
+#             res = {'msg' : 'Data Updated'}
+#             json_data = JSONRenderer().render(res)
+#             return HttpResponse(json_data, content_type='Application/json')
+
+#         json_data = JSONRenderer().render(serializer.errors)
+#         return HttpResponse(json_data, content_type='Application/json')
+
+
+
+
+#     def delete(self, request, *args, **kwargs):
+#         json_data = request.body
+#         stream = io.BytesIO(json_data)
+#         pythondata = JSONParser().parse(stream)
+#         candidate_id = pythondata.get('candidate_id')
+#         stu = Candidate.objects.get(candidate_id=candidate_id)
+#         stu.delete()
+
+#         res = {'msg : Data Deleted'}
+#         json_data = JSONRenderer().render(res)
+#         return HttpResponse(json_data, content_type='Application/json')
+ 
