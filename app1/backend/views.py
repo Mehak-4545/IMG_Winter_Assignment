@@ -13,38 +13,60 @@ from django.utils.decorators import method_decorator
 from django.views import View
 from rest_framework import viewsets
 
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny
+from rest_framework.permissions import IsAdminUser # (staff=true)
+
 # # Create your views here.
 
 
 class RecruitmentSeasonModelViewSet(viewsets.ModelViewSet):
     queryset=RecruitmentSeason.objects.all()
     serializer_class = RecruitmentSeasonSerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [AllowAny]
+
     
 
 
 class RoundModelViewSet(viewsets.ModelViewSet):
     serializer_class = RoundSerializer
     queryset = Round.objects.all()
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [AllowAny]
+
 
 
 class SectionModelViewSet(viewsets.ModelViewSet):
     serializer_class = SectionSerializer
     queryset = Section.objects.all()
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [AllowAny]
+
 
 
 class QuestionModelViewSet(viewsets.ModelViewSet):
     serializer_class = QuestionSerializer
     queryset = Question.objects.all()
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [AllowAny]
+
 
 
 class CandidateModelViewSet(viewsets.ModelViewSet):
     queryset = Candidate.objects.all()
     serializer_class = CandidateSerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [AllowAny]
 
 
 class UserModelViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [AllowAny]
+
 
     # def add_user(request):
     #     print('this action will add a user')
@@ -91,24 +113,33 @@ class UserModelViewSet(viewsets.ModelViewSet):
 
             
 
-    def login_user(request):
-        print('this action will login an existing user')
-        return HttpResponse('<h1>dummy user logged in</h1>')
+    # def login_user(request):
+    #     print('this action will login an existing user')
+    #     return HttpResponse('<h1>dummy user logged in</h1>')
 
 
 class EvaluatorPanelModelViewSet(viewsets.ModelViewSet):
     serializer_class = EvaluatorPanelSerializer
     queryset = EvaluatorPanel.objects.all()
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [AllowAny]
+
 
 
 class CandidateRoundModelViewSet(viewsets.ModelViewSet):
     serializer_class = CandidateRoundSerializer
     queryset = CandidateRound.objects.all()
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [AllowAny]
+
 
 
 class CandidateQuestionModelViewSet(viewsets.ModelViewSet):
     serializer_class = CandidateQuestionSerializer
     queryset = CandidateQuestion.objects.all()
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [AllowAny]
+
 
 
 
