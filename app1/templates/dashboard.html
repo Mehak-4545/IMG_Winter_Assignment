@@ -30,7 +30,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Candidate ID</th>
                     <th scope="col">Evaluation Status</th>
-                    <th scope="col">U</th>
+                    <th scope="col">Role</th>
                     <th scope="col">V</th>
                     <th scope="col">W</th>
                     <th scope="col">X</th>
@@ -38,39 +38,22 @@
                 </tr>
             </thead>
             <tbody>
+                {% for e in emps %}
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>10001</td>
-                    <td>Qualified for dev round1</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
+
+                    <td>{{forloop.counter}}</td>
+                    <td>{{e.name}}</td>
+                    <td>{{e.candidate_id}}</td>
+                    <td>{{e.current_status}}</td>
+                    <td>{{e.role}}</td>
+                    <td>{{e.enrollment_number}}</td>
+
+                    <td>
+                        <!-- <a href="/emp/delete_emp/{{e.id}}" class="" btn btn-danger btn-sm>Delete</a> -->
+                        <a href="/emp/update_emp/{{e.id}}" class="" btn btn-danger btn-sm>Update</a>
+                    </td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Mark</td>
-                    <td>10001</td>
-                    <td>Qualified for dev round1</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Mark</td>
-                    <td>10001</td>
-                    <td>Qualified for dev round1</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
 

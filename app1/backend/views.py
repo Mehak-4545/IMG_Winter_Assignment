@@ -20,6 +20,12 @@ from rest_framework.permissions import IsAdminUser # (staff=true)
 
 # # Create your views here.
 
+def can_detail(request):
+        emps=Candidate.objects.all()
+        # return render(request, "dashboard.html", {'emps' :emps})
+        return render(request, "dashboard2.html", {'emps' :emps})
+
+
 
 class RecruitmentSeasonModelViewSet(viewsets.ModelViewSet):
     queryset=RecruitmentSeason.objects.all()
@@ -60,6 +66,9 @@ class CandidateModelViewSet(viewsets.ModelViewSet):
     authentication_classes = [BasicAuthentication]
     permission_classes = [AllowAny]
 
+
+
+    
 
 class UserModelViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()

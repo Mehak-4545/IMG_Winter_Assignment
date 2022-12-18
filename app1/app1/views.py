@@ -1,6 +1,7 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 import datetime
+from backend.models import Candidate
 
 
 def home_page(request):
@@ -28,7 +29,8 @@ def dashboard_page(request):
     print("dashboard page requested")
     # return JsonResponse(friends,safe=False)
     # return HttpResponse("This is home page")
-    return render(request, "dashboard.html", {})
+    # return render(request, "dashboard.html", {})
+    return render(request, "dashboard2.html", {})
 
 
 def login_page(request):
@@ -48,4 +50,9 @@ def signup_page(request):
     # return HttpResponse("This is home page")
     return render(request, "signup.html", {})
 
+
+def can_detail(request):
+        emps=Candidate.objects.all()
+        # return render(request, "dashboard.html", {'emps' :emps})
+        return render(request, "dashboard2.html", {'emps' :emps})
 
